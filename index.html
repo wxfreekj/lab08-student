@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 8: Mid-Latitude Cyclones</title>
+    <link href="./shared/styles/common.css" rel="stylesheet" />
+    <link href="./shared/styles/lab-styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="progress-indicator" style="position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.98); box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 8px 0;">
+      <div class="progress-bar" style="width: 100%; height: 8px; background: #e0e0e0; overflow: hidden;">
+        <div class="progress-fill" id="progressBar" style="height: 8px; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); width: 0%; transition: width 0.3s ease; display: block;"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="header">
+        <h1>🌀 Lab 8: Mid-Latitude Cyclones</h1>
+        <p class="subtitle">ESCI 240 - 30 Points</p>
+      </div>
+
+      <div class="content">
+        <!-- Introduction Section -->
+        <div class="section">
+          <h2>📚 Introduction</h2>
+          <div class="intro-box">
+            <p>
+              Although the Mid-latitude cyclone model discussed in Chapter 8
+              simplifies mid-latitude weather, it provides a starting point for
+              understanding how these storm systems and their associated fronts
+              affect the temperature, dew point, pressure, winds, clouds, and
+              precipitation of the regions to which they move.
+            </p>
+
+            <p>
+              The figure below shows the development of a mid-latitude cyclone
+              over a three-day period. On all three maps and at each station
+              (A–D), the conditions are shown at the right with station models
+              for each day. Each column represents the same station over the
+              three days.
+            </p>
+          </div>
+          <img
+            src="Fig1.PNG"
+            height="600px"
+            style="display: block; margin: 0 auto"
+            alt="Atmospheric Pressure Curves"
+            id="mid-latitude-cyclone-evolution"
+          />
+        </div>
+
+        <!-- Question 1 -->
+        <div class="section">
+          <h3>Question 1: Station Matching (4 pts)</h3>
+          <p>
+            Match the appropriate station to each column based on the weather
+            maps and station models:
+          </p>
+
+          <div class="info-box">
+            <p>
+              <strong>Instructions:</strong> Examine the three-day cyclone
+              development maps and the station model columns. Identify which
+              station (A, B, C, or D) corresponds to each column of weather
+              observations.
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="q1-col1">Column 1 (leftmost) is Station:</label>
+            <input
+              type="text"
+              id="q1-col1"
+              name="q1-col1"
+              placeholder="Enter A, B, C, or D"
+              maxlength="1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="q1-col2">Column 2 is Station:</label>
+            <input
+              type="text"
+              id="q1-col2"
+              name="q1-col2"
+              placeholder="Enter A, B, C, or D"
+              maxlength="1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="q1-col3">Column 3 is Station:</label>
+            <input
+              type="text"
+              id="q1-col3"
+              name="q1-col3"
+              placeholder="Enter A, B, C, or D"
+              maxlength="1"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="q1-col4">Column 4 (rightmost) is Station:</label>
+            <input
+              type="text"
+              id="q1-col4"
+              name="q1-col4"
+              placeholder="Enter A, B, C, or D"
+              maxlength="1"
+            />
+          </div>
+        </div>
+
+        <!-- Colorado Low Analysis Section -->
+        <div class="section">
+          <h2>🗻 Colorado Low Analysis</h2>
+          <div class="info-box">
+            <p>
+              Mid-latitude cyclones provide useful case studies that link
+              meteorological theory to the real world because their pronounced
+              features reinforce key concepts related to storm development. The
+              remainder of this lab we'll examine a classic "Colorado low" that
+              forms on the lee side of the Rocky Mountains.
+            </p>
+
+            <p>
+              We will use upper-air and surface maps as well as time series of
+              meteorological variables to investigate the storm's structure, how
+              it developed, and how it affected specific places. Both Greenwich
+              Mean Time, or Zulu time (z), and Central Standard Time (CST) are
+              given for each map.
+            </p>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="section">
+          <h3>Question 2: Pressure Drop (2 pts)</h3>
+          <p>
+            <strong>
+                Instructions:
+            </strong>Examine the surface maps labeled A through D showing the storm
+            development from November 9 to November 11.
+          </p>
+<img
+            src="Fig2.PNG"
+            height="600px"
+            style="display: block; margin: 0 auto"
+            alt="Atmospheric Pressure Curves"
+            id="mid-latitude-cyclone-evolution"
+          <div class="form-group">
+            <label for="q2-pressure"
+              >How much did the pressure drop in the storm's center from
+              November 9, 1200z, until November 11, 0000z? (in millibars)</label
+            >
+            <input
+              type="number"
+              id="q2-pressure"
+              name="q2-pressure"
+              placeholder="Enter pressure drop in mb"
+              step="1"
+            />
+            
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="section">
+          <h3>Question 3: Pressure Gradient Change (3 pts)</h3>
+          <div class="form-group">
+            <label for="q3-gradient"
+              >How did the surface pressure gradient in the Great Lakes region
+              change during this 36-hour period?</label
+            >
+            <textarea
+              id="q3-gradient"
+              name="q3-gradient"
+              rows="4"
+              placeholder="Describe the changes in the pressure gradient..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="section">
+          <h3>Question 4: Wind Speed Response (3 pts)</h3>
+          <div class="form-group">
+            <label for="q4-wind"
+              >How did surface wind speed respond to this pressure gradient
+              change? Did the wind speed increase or decrease?</label
+            >
+            <textarea
+              id="q4-wind"
+              name="q4-wind"
+              rows="4"
+              placeholder="Describe how wind speed changed and whether it increased or decreased..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Image C Analysis Section -->
+        <div class="section">
+          <h2>🗺️ Surface Map C Analysis</h2>
+          <div class="info-box">
+            <p>
+              Use
+              <strong>Surface Map C (10-Nov 1200z / 10-Nov 0600 CST)</strong> to
+              answer Questions 5-9.
+            </p>
+            </div>
+                <img
+                src="Fig3.PNG"
+                height="600px"
+                style="display: block; margin: 0 auto"
+                alt="Atmospheric Pressure Curves"
+                id="mid-latitude-cyclone-evolution"/>
+          
+        </div>
+
+        <!-- Question 5 -->
+        <div class="section">
+          <h3>Question 5: Norwegian Cyclone Model (4 pts)</h3>
+          <div class="form-group">
+            <label for="q5-model"
+              >Describe how the cloud and precipitation patterns match the
+              Norwegian cyclone model:</label
+            >
+            <textarea
+              id="q5-model"
+              name="q5-model"
+              rows="5"
+              placeholder="Describe the cloud and precipitation patterns and how they match the Norwegian cyclone model..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="section">
+          <h3>Question 6: Maritime Tropical Air Mass (4 pts)</h3>
+          <p>
+            Examine the maritime tropical (mT) air mass on the map and identify
+            the temperature and dew point ranges.
+          </p>
+
+          <div class="form-group">
+            <label>Temperature range in maritime tropical air mass:</label>
+            <div class="inline-inputs">
+              <input
+                type="number"
+                id="q6-temp-from"
+                name="q6-temp-from"
+                placeholder="From"
+                step="1"
+              />
+              <span>to</span>
+              <input
+                type="number"
+                id="q6-temp-to"
+                name="q6-temp-to"
+                placeholder="To"
+                step="1"
+              />
+              <span class="unit-label">degrees F</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Dew point range in maritime tropical air mass:</label>
+            <div class="inline-inputs">
+              <input
+                type="number"
+                id="q6-dewpt-from"
+                name="q6-dewpt-from"
+                placeholder="From"
+                step="1"
+              />
+              <span>to</span>
+              <input
+                type="number"
+                id="q6-dewpt-to"
+                name="q6-dewpt-to"
+                placeholder="To"
+                step="1"
+              />
+              <span class="unit-label">degrees F</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="section">
+          <h3>Question 7: Wind Direction in mT Air Mass (2 pts)</h3>
+          <div class="form-group">
+            <label for="q7-wind-dir"
+              >What was the most common wind direction in the maritime tropical
+              air mass?</label
+            >
+            <select id="q7-wind-dir" name="q7-wind-dir">
+              <option value="">Select direction...</option>
+              <option value="N">N</option>
+              <option value="NE">NE</option>
+              <option value="E">E</option>
+              <option value="SE">SE</option>
+              <option value="S">S</option>
+              <option value="SW">SW</option>
+              <option value="W">W</option>
+              <option value="NW">NW</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="section">
+          <h3>Question 8: Continental Polar Air Mass (2 pts)</h3>
+          <p>
+            Compare the continental polar (cP) air mass west of the cold front
+            to the maritime tropical air mass.
+          </p>
+
+          <div class="form-group">
+            <label>Temperatures were about how many degrees lower in the cP air mass?</label>
+            <div class="inline-inputs">
+              <input
+                type="number"
+                id="q8-temp-diff"
+                name="q8-temp-diff"
+                placeholder="Enter"
+                step="1"
+              />
+              <span class="unit-label">degrees lower</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Dew points were about how many degrees lower in the cP air mass?</label>
+            <div class="inline-inputs">
+              <input
+                type="number"
+                id="q8-dewpt-diff"
+                name="q8-dewpt-diff"
+                placeholder="Enter"
+                step="1"
+              />
+              <span class="unit-label">degrees lower</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="section">
+          <h3>Question 9: Wind Differences Across Cold Front (2 pts)</h3>
+          <div class="form-group">
+            <label for="q9-wind-diff"
+              >Describe the differences in wind speed and direction between the
+              eastern and western sides of the cold front:</label
+            >
+            <textarea
+              id="q9-wind-diff"
+              name="q9-wind-diff"
+              rows="4"
+              placeholder="Describe wind speed and direction differences..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Meteogram Analysis Section -->
+        <div class="section">
+          <h2>📊 Meteogram Analysis</h2>
+          <div class="info-box">
+            <p>
+              Meteograms represent a time series of meteorological variables. We
+              can use meteograms to detect when certain features of the
+              mid-latitude cyclone pass. Consider how temperature, dew point,
+              and wind direction change with the passage of a front and
+              reconcile your answers with respect to the surface weather maps.
+            </p>
+          </div>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="section">
+          <h3>Question 10: Cold Front Passage (2 pts)</h3>
+          <p>
+            Examine the meteogram provided and determine when the cold front
+            passed through the city.
+          </p>
+     <img
+                src="Fig4.PNG"
+                width="100%"
+                style="display: block; margin: 0 auto"
+                alt="Atmospheric Pressure Curves"
+                id="mid-latitude-cyclone-evolution"/>
+
+          <div class="form-group">
+            <label>Cold front passage date and time:</label>
+            <div class="inline-inputs">
+              <input
+                type="number"
+                id="q10-month"
+                name="q10-month"
+                placeholder="Mnth"
+                min="1"
+                max="12"
+                step="1"
+              />
+              <span>/</span>
+              <input
+                type="number"
+                id="q10-day"
+                name="q10-day"
+                placeholder="Day"
+                min="1"
+                max="31"
+                step="1"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 11 -->
+        <div class="section">
+          <h3>Question 11: Wind Direction Change (2 pts)</h3>
+          <p>
+            Analyze how the wind direction changed after the cold front passage.
+          </p>
+
+          <div class="form-group">
+            <label>Wind direction change:</label>
+            <div class="inline-inputs">
+              <span>The winds went from</span>
+              <input
+                type="text"
+                id="q11-from"
+                name="q11-from"
+                placeholder="Initial direction"
+                style="width: 120px"
+              />
+              <span>to</span>
+              <input
+                type="text"
+                id="q11-to"
+                name="q11-to"
+                placeholder="Final direction"
+                style="width: 120px"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Export Section -->
+        <div class="section">
+          <h2>💾 Export Your Work</h2>
+          <p>
+            Click the button below to generate a text file with all your
+            answers. Submit this file to Canvas.
+          </p>
+          <button id="exportBtn" class="export-button">
+            Export Lab Answers
+          </button>
+          <div id="exportStatus" class="export-status"></div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>ESCI 240 - Lab 8: Mid-Latitude Cyclones</p>
+      </div>
+    </div>
+
+    <script src="./shared/utils/form-exporter.js"></script>
+    <script src="lab08-main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  </body>
+</html>
