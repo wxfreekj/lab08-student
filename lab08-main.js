@@ -12,7 +12,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Initialize input validation
   initializeValidation();
+
+  // Initialize collapsible headers (wire up click handlers)
+  initializeCollapsibles();
 });
+
+function initializeCollapsibles() {
+  const headers = document.querySelectorAll(".collapsible-header");
+  headers.forEach((h) => {
+    h.addEventListener("click", function () {
+      toggleCollapsible(this);
+    });
+  });
+}
+
+function toggleCollapsible(header) {
+  header.classList.toggle("is-collapsed");
+  const content = header.nextElementSibling;
+  if (content && content.classList.contains("collapsible-content")) {
+    content.classList.toggle("is-collapsed");
+  }
+}
 
 function initializeValidation() {
   // Q1: Station letter validation (A, B, C, or D)
@@ -289,6 +309,34 @@ function setupFormExport() {
       exportStatus.style.color = "#dc2626";
     }
   });
+}
+
+// Clear form function (used by Clear All Answers button)
+function clearForm() {
+  if (
+    !confirm(
+      "⚠️ Are you sure you want to clear all answers? This cannot be undone."
+    )
+  )
+    return;
+
+  const inputs = document.querySelectorAll("input, select, textarea");
+  inputs.forEach((el) => {
+    if (el.tagName === "SELECT") el.selectedIndex = 0;
+    else el.value = "";
+  });
+
+  // Clear validation errors and export status
+  const errors = document.querySelectorAll(".validation-error");
+  errors.forEach((e) => e.remove());
+  const exportStatus = document.getElementById("exportStatus");
+  if (exportStatus) exportStatus.textContent = "";
+
+  // Reset progress bar
+  const progressBar = document.getElementById("progressBar");
+  if (progressBar) progressBar.style.width = "0%";
+
+  alert("✅ All answers have been cleared.");
 }
 
 function collectFormData() {
