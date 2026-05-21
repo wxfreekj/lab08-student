@@ -57,6 +57,8 @@ function initializeValidation() {
     "q6-dewpt-to",
     "q8-temp-diff",
     "q8-dewpt-diff",
+    "q11-from",
+    "q11-to",
   ];
   numberInputs.forEach((id) => {
     const input = document.getElementById(id);
@@ -130,7 +132,11 @@ function validateNumberRange(input) {
       showValidationError(input, "Pressure drop should be between 0 and 50 mb");
       return false;
     }
-  
+  } else if (id.includes("q11")) {
+    if (value < 0 || value > 50) {
+      showValidationError(input, "Value should be between 0 and 50");
+      return false;
+    }
   }
 
   clearValidationError(input);
@@ -206,7 +212,8 @@ function validateAllInputs() {
     "q6-dewpt-to",
     "q8-temp-diff",
     "q8-dewpt-diff",
-
+    "q11-from",
+    "q11-to",
   ];
   numberInputs.forEach((id) => {
     const input = document.getElementById(id);
