@@ -48,7 +48,7 @@ function initializeValidation() {
     }
   });
 
-  // Q2, Q8: Temperature and pressure number validation
+  // Q2, Q6, Q8: Temperature and pressure number validation
   const numberInputs = [
     "q2-pressure",
     "q6-temp-from",
@@ -57,14 +57,25 @@ function initializeValidation() {
     "q6-dewpt-to",
     "q8-temp-diff",
     "q8-dewpt-diff",
-    "q11-from",
-    "q11-to",
   ];
   numberInputs.forEach((id) => {
     const input = document.getElementById(id);
     if (input) {
       input.addEventListener("blur", function () {
         validateNumberRange(this);
+      });
+    }
+  });
+
+  // Q11: Wind direction validation (compass points, not numbers)
+  ["q11-from", "q11-to"].forEach((id) => {
+    const input = document.getElementById(id);
+    if (input) {
+      input.addEventListener("blur", function () {
+        validateWindDirection(this);
+      });
+      input.addEventListener("input", function () {
+        this.value = this.value.toUpperCase();
       });
     }
   });
@@ -132,11 +143,42 @@ function validateNumberRange(input) {
       showValidationError(input, "Pressure drop should be between 0 and 50 mb");
       return false;
     }
-  } else if (id.includes("q11")) {
-    if (value < 0 || value > 50) {
-      showValidationError(input, "Value should be between 0 and 50");
-      return false;
-    }
+  }
+
+  clearValidationError(input);
+  return true;
+}
+
+function validateWindDirection(input) {
+  const raw = input.value.trim();
+
+  if (!raw) {
+    clearValidationError(input);
+    return true;
+  }
+
+  // Accept compass abbreviations (N, SW, NNW, ...) and spelled-out
+  // directions ("southwest", "North-East", "south west").
+  const normalized = raw
+    .toUpperCase()
+    .replace(/[\s\-\/]+/g, "")
+    .replace(/NORTH/g, "N")
+    .replace(/SOUTH/g, "S")
+    .replace(/EAST/g, "E")
+    .replace(/WEST/g, "W")
+    .replace(/ERLY$/, "");
+
+  const compassPoints = [
+    "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
+    "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW",
+  ];
+
+  if (!compassPoints.includes(normalized)) {
+    showValidationError(
+      input,
+      "Please enter a compass direction (e.g., N, SE, SW, NNW)"
+    );
+    return false;
   }
 
   clearValidationError(input);
@@ -212,14 +254,21 @@ function validateAllInputs() {
     "q6-dewpt-to",
     "q8-temp-diff",
     "q8-dewpt-diff",
-    "q11-from",
-    "q11-to",
   ];
   numberInputs.forEach((id) => {
     const input = document.getElementById(id);
     if (input && !validateNumberRange(input)) {
       isValid = false;
       errors.push(input.previousElementSibling?.textContent || id);
+    }
+  });
+
+  // Validate wind directions (Q11)
+  ["q11-from", "q11-to"].forEach((id) => {
+    const input = document.getElementById(id);
+    if (input && !validateWindDirection(input)) {
+      isValid = false;
+      errors.push("Wind direction (Question 11)");
     }
   });
 
